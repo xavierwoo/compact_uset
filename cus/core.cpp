@@ -6,7 +6,7 @@
 #include <iostream>
 
 void compact_uset::it_works() {
-    Set<uint8_t> set(10);
+    Set<> set(10);
 
     set.insert(3);
     set.insert(1);

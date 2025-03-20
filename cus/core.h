@@ -22,7 +22,7 @@ namespace compact_uset {
     using std::vector;
     using std::numeric_limits;
 
-    template<UnsignedInt U>
+    template<UnsignedInt U = uint32_t>
     struct Set {
     private:
         vector<U> _hash;
