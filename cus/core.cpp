@@ -3,6 +3,7 @@
 //
 
 #include "core.h"
+#include <iostream>
 
 void compact_uset::it_works() {
     Set<uint8_t> set(10);
@@ -17,4 +18,6 @@ void compact_uset::it_works() {
     set.remove(3);
     assert(set.get_data_list()[0] == 1);
     assert(set.get_hash_list()[1] == 0);
+
+    std::cout<<"cus works!"<<std::endl;
 }
