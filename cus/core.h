@@ -10,6 +10,9 @@
 #include <cassert>
 
 namespace compact_uset {
+
+    void it_works();
+
     template<typename U>
     concept UnsignedInt = (std::is_same_v<U, uint8_t> ||
                            std::is_same_v<U, uint16_t> ||
@@ -20,12 +23,12 @@ namespace compact_uset {
     using std::numeric_limits;
 
     template<UnsignedInt U>
-    struct USet {
+    struct Set {
     private:
         vector<U> _hash;
         vector<U> _data;
     public:
-        explicit USet(U);
+        explicit Set(U);
 
         void insert(U);
         auto contains(U value) const {return _hash[value] != numeric_limits<U>::max();}
@@ -36,12 +39,13 @@ namespace compact_uset {
 
         U size() const {return _data.size();}
         auto get_data_list() const -> const vector<U>& {return _data;}
+        auto get_hash_list() const -> const vector<U>& {return _hash;}
 
         void check() const;
     };
 
     template<UnsignedInt U>
-    void USet<U>::check() const {
+    void Set<U>::check() const {
         U count {0};
         for (auto i{0}; i<_hash.size(); ++i){
             if (_hash[i] == numeric_limits<U>::max()) continue;
@@ -52,7 +56,7 @@ namespace compact_uset {
     }
 
     template<UnsignedInt U>
-    void USet<U>::remove(U value) {
+    void Set<U>::remove(U value) {
         assert(value < _hash.size());
         if (!contains(value)) return;
         auto pos {_hash[value]};
@@ -66,7 +70,7 @@ namespace compact_uset {
     }
 
     template<UnsignedInt U>
-    void USet<U>::insert(U value) {
+    void Set<U>::insert(U value) {
         assert(value < _hash.size());
         if (contains(value)) return;
         _hash[value] = _data.size();
@@ -74,7 +78,7 @@ namespace compact_uset {
     }
 
     template<UnsignedInt U>
-    USet<U>::USet(U maximum) {
+    Set<U>::Set(U maximum) {
         _hash.resize(maximum + 1, numeric_limits<U>::max());
     }
 
