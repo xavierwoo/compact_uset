@@ -8,6 +8,12 @@ This set implementation support very quick insertion, deletion, inquiry and trav
 Each element is unique in the structure.
 The order is not guaranteed.
 
+## Version
+
+**current version**: v0.1.0
+
+![Version](https://img.shields.io/badge/version-v0.1.0-blue)
+
 ## Usage
 
 ```c++
