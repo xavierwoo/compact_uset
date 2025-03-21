@@ -10,9 +10,9 @@ The order is not guaranteed.
 
 ## Version
 
-**current version**: v0.1.0
+**current version**: v0.2.0
 
-![Version](https://img.shields.io/badge/version-v0.1.0-blue)
+![Version](https://img.shields.io/badge/version-v0.2.0-blue)
 
 ## Usage
 
