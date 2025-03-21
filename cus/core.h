@@ -8,6 +8,8 @@
 #include <cstdint>
 #include <limits>
 #include <cassert>
+#include <ranges>
+#include <algorithm>
 
 namespace compact_uset {
 
@@ -33,6 +35,7 @@ namespace compact_uset {
         void insert(U);
         auto contains(U value) const {return _hash[value] != numeric_limits<U>::max();}
         void remove(U);
+        void clear();
 
         auto begin() const {return _data.begin();}
         auto end() const {return _data.end();}
@@ -74,6 +77,12 @@ namespace compact_uset {
             _hash[last] = pos;
         }
         _data.pop_back();
+    }
+
+    template<UnsignedInt U>
+    void Set<U>::clear() {
+        _data.clear();
+        std::ranges::fill(_hash, numeric_limits<U>::max());
     }
 
     template<UnsignedInt U>

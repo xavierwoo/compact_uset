@@ -26,5 +26,11 @@ void compact_uset::it_works() {
     set.insert(12);
     set.check();
 
+    set.clear();
+    set.insert(3);
+    set.insert(1);
+    set.insert(1);
+    set.check();
+
     std::cout<<"cus works!"<<std::endl;
 }
