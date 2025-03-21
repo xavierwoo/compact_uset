@@ -32,5 +32,10 @@ void compact_uset::it_works() {
     set.insert(1);
     set.check();
 
+    Set<> set2(3);
+    set2.insert(1);
+    set2.insert(3);
+    assert(set2 == set);
+
     std::cout<<"cus works!"<<std::endl;
 }

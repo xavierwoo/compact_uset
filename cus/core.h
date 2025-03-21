@@ -46,6 +46,8 @@ namespace compact_uset {
 
         void re_set(U);
         void check() const;
+
+        auto operator==(const Set&) const ->bool;
     };
 
     template<UnsignedInt U>
@@ -63,6 +65,19 @@ namespace compact_uset {
             ++count;
         }
         assert(count == _data.size());
+    }
+
+    template<UnsignedInt U>
+    auto Set<U>::operator==(const Set& other) const -> bool {
+        if (_data.size() != other._data.size()) return false;
+        auto size {std::min(_hash.size(), other._hash.size())};
+        for (auto i{0}; i<size; ++i) {
+            if (!(_hash[i] == std::numeric_limits<U>::max() && other._hash[i] == std::numeric_limits<U>::max()
+                ||
+                _hash[i] < std::numeric_limits<U>::max() && other._hash[i] < std::numeric_limits<U>::max())
+            ) return false;
+        }
+        return true;
     }
 
     template<UnsignedInt U>
