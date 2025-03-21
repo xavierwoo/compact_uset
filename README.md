@@ -22,9 +22,12 @@ The order is not guaranteed.
 #include <iostream>
 
 int main(){
-        //When declaring, the maximum possible value should be specified.
-    //The maximum possible value cannot be changed due to performance concern.
-    compact_uset::Set<> set(10);
+    
+    compact_uset::Set<> set;
+    
+    //Use re_set() to set the maximum possible value.
+    set.re_set(10);
+    //You can set a larger maximum later by using this function again.
 
     //Use insert() to insert elements
     //Inserting same values is OK, but it will be ignored automatically
