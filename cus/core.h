@@ -28,7 +28,7 @@ namespace compact_uset {
         vector<U> _hash;
         vector<U> _data;
     public:
-        explicit Set(U);
+        explicit Set(U maximum = 0);
 
         void insert(U);
         auto contains(U value) const {return _hash[value] != numeric_limits<U>::max();}
@@ -41,8 +41,15 @@ namespace compact_uset {
         auto get_data_list() const -> const vector<U>& {return _data;}
         auto get_hash_list() const -> const vector<U>& {return _hash;}
 
+        void re_set(U);
         void check() const;
     };
+
+    template<UnsignedInt U>
+    void Set<U>::re_set(U new_maximum) {
+        assert(new_maximum > _hash.size());
+        _hash.resize(new_maximum+1, numeric_limits<U>::max());
+    }
 
     template<UnsignedInt U>
     void Set<U>::check() const {
@@ -79,6 +86,7 @@ namespace compact_uset {
 
     template<UnsignedInt U>
     Set<U>::Set(U maximum) {
+        if (maximum == 0) return;
         _hash.resize(maximum + 1, numeric_limits<U>::max());
     }
 

@@ -22,5 +22,9 @@ void compact_uset::it_works() {
     assert(set.get_data_list()[0] == 1);
     assert(set.get_hash_list()[1] == 0);
 
+    set.re_set(15);
+    set.insert(12);
+    set.check();
+
     std::cout<<"cus works!"<<std::endl;
 }
